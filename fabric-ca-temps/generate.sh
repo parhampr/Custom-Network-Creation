@@ -110,7 +110,7 @@ awk -i inplace -v org="$ccpgenerate" \
 
 total+="$(cat $CURR/ordererbash.txt)"
 echo "Generating registerEnroll.sh in $DIR"
-echo "$total" > $DIR/registerEnroll.sh
+echo "$total" | sed "s/example.com/$NETADD/g" > $DIR/registerEnroll.sh
 chmod +x $DIR/registerEnroll.sh
 
 

@@ -33,7 +33,7 @@ function yaml_ccp {
         -e "s#\${PEERPEM}#$PP#" \
         -e "s#\${CAPEM}#$CP#" \
         -e "s#\${networknick}#$NETWORKNICK#" \
-        ccp-template.yaml | sed -e $'s/\\\\n/\\\n          /g'
+        organizations/ccp-template.yaml | sed -e $'s/\\\\n/\\\n          /g'
 }
 
 function generateCCPs {

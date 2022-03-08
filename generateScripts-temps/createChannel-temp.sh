@@ -26,7 +26,7 @@ createChannelTx() {
 }
 
 createChannel() {
-	setGlobals 1
+	setGlobals #{firstorg}
 	# Poll in case the raft leader is not set yet
 	local rc=1
 	local COUNTER=1

@@ -94,7 +94,7 @@ function CreateExports {
   echo "$total"
 }
 
-function CreateSetGlobals {
+function CreateSetGlobals { 
   local total=""
   for i in "${!ORGANISATIONS[@]}"; do
   if [ $i -eq 0 ]; then
@@ -104,7 +104,7 @@ function CreateSetGlobals {
   fi
   total+="[ \$USING_ORG == \"${ORGANISATIONS[$i]}\" ]; then
     export CORE_PEER_LOCALMSPID=\"${ORGANISATIONS[$i]}MSP\"
-    export CORE_PEER_TLS_ROOTCERT_FILE=\$PEER0_`echo "${ORGANISATIONS[$i]}" | tr [:upper:] [:lower:]`_CA
+    export CORE_PEER_TLS_ROOTCERT_FILE=\$PEER0_`echo "${ORGANISATIONS[$i]}" | tr [:lower:] [:upper:]`_CA
     export CORE_PEER_MSPCONFIGPATH=\${PWD}/organizations/peerOrganizations/${ORGANISATIONSADD[$i]}/users/Admin@org1.example.com/msp
     export CORE_PEER_ADDRESS=localhost:${P0PORT[$i]}"
   done
@@ -169,9 +169,11 @@ function generateConfigU {
 # Generate create channel file
 function generateCreateChannel {
     awk -v JOIN="$(CreateJoinOrg)" \
-        -v ANCHOR="$(CreateSetAnchor)" '{
+        -v ANCHOR="$(CreateSetAnchor)" \
+        -v first="${ORGANISATIONS[0]}" '{
             gsub(/#{joinorg}/,JOIN);
             gsub(/#{setanchororg}/,ANCHOR);
+            gsub(/#{firstorg}/, first)
         }2' $CURR/createChannel-temp.sh | sed "s/example.com/$NETADD/g"  > $NETDIR/createChannel.sh
 }
 

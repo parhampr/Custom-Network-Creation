@@ -105,7 +105,7 @@ function CreateSetGlobals {
   total+="[ \$USING_ORG == \"${ORGANISATIONS[$i]}\" ]; then
     export CORE_PEER_LOCALMSPID=\"${ORGANISATIONS[$i]}MSP\"
     export CORE_PEER_TLS_ROOTCERT_FILE=\$PEER0_`echo "${ORGANISATIONS[$i]}" | tr [:lower:] [:upper:]`_CA
-    export CORE_PEER_MSPCONFIGPATH=\${PWD}/organizations/peerOrganizations/${ORGANISATIONSADD[$i]}/users/Admin@org1.example.com/msp
+    export CORE_PEER_MSPCONFIGPATH=\${PWD}/organizations/peerOrganizations/${ORGANISATIONSADD[$i]}/users/Admin@${ORGANISATIONSADD[$i]}/msp
     export CORE_PEER_ADDRESS=localhost:${P0PORT[$i]}"
   done
   total+="\n  else

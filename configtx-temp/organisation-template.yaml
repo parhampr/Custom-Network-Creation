@@ -8,7 +8,7 @@
                 Rule: "OR('${org}MSP.admin', '${org}MSP.peer', '${org}MSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('${org}MSP.admin', ${org}MSP.client')"
+                Rule: "OR('${org}MSP.admin', '${org}MSP.client')"
             Admins:
                 Type: Signature
                 Rule: "OR('${org}MSP.admin')"

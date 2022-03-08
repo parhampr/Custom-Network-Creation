@@ -10,13 +10,15 @@ function genBash {
       -v orgAdd="$2" \
       -v admin="$3" \
       -v password="$4" \
-      -v sorg="`echo "$1" | tr [:upper:] [:lower:]`" \ '{
+      -v sorg="`echo "$1" | tr [:upper:] [:lower:]`" \
+      -v caport="$5" '{
           gsub(/#{org}/,org);
           gsub(/#{orgAdd}/,orgAdd);
           gsub(/#{admin}/,admin);
           gsub(/#{adminpw}/,password);
           gsub(/#{sorg}/,sorg);
-      }2' <$CURR/Enroll-temp.sh
+          gsub(/#{CAPORT}/, caport)
+      }3' <$CURR/Enroll-temp.sh
 }
 
 function ccp {
@@ -96,7 +98,7 @@ for i in "${!ORGANISATIONS[@]}"; do
 total="#!/bin/bash \n"
 ccpgenerate=""
 for i in "${!ORGANISATIONS[@]}"; do
-     total+="$(genBash ${ORGANISATIONS[$i]} ${ORGANISATIONSADD[$i]} ${ADMIN[$i]} ${PASSWORD[$i]})\n\n"
+     total+="$(genBash ${ORGANISATIONS[$i]} ${ORGANISATIONSADD[$i]} ${ADMIN[$i]} ${PASSWORD[$i]} ${CAPORT[$i]})\n\n"
      ccpgenerate+="$(ccp ${ORGANISATIONS[$i]} ${SORG[$i]} ${ORGANISATIONSADD[$i]} ${ADMIN[$i]} ${PASSWORD[$i]} ${P0PORT[$i]} ${CAPORT[$i]})\n\n"
 done
 

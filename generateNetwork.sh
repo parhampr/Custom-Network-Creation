@@ -49,10 +49,10 @@ function fabric {
     echo "$total"
 }
 
-NETDIR="test-network"
-NETADD="example.com"
-NETWORKNAME="test_network"
-NETWORKNICK="test"
+NETDIR="ApplicationNetwork"
+NETADD="um.edu.my"
+NETWORKNAME="Medi_Chain"
+NETWORKNICK="mdc"
 ORGANISATIONS=()
 ORGANISATIONSADD=()
 ADMIN=()
@@ -126,7 +126,8 @@ echo "  Organisation $(($i + 1)):
   Organisation PeerP:    ${P0PORT[$i]},
   Organisation CAPort:   ${CAPORT[$i]}
   Organisation ADMIN:    ${ADMIN[$i]},
-  Organisation PASSWORD: ${PASSWORD[$i]:0:2}***"
+  Organisation PASSWORD: ${PASSWORD[$i]:0:2}***
+  "
 done
 export CURR="$PWD/configtx-temp"
 configtx-temp/generate.sh $(configtxO)

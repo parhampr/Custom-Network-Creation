@@ -23,13 +23,23 @@ function list {
     echo "$total" | sed -e 's+^+  +'
 }
 
+function list2 {
+   local total=""
+    for index in "${!ORGANISATIONS[@]}"; do
+        total+="      - peer0.${ORGANISATIONSADD[$index]}\n"
+    done
+    echo "$total"
+}
+
 function all {
     awk -v r="`orgs`" \
         -v nn="$NETWORKNAME" \
+        -v cli="`list2`" \
         -v w="`list`" '{
         gsub(/\${peervolumes}/,r);
         gsub(/\${peerlist}/,w);
         gsub(/\${networkname}/,nn);
+        gsub(/\${clilist}/,cli);
         }3' $CURR/d-compose-test-net.yaml | sed -e "s+\${networknick}+${NETWORKNICK}+g" -e "s/example.com/$NETADD/g"
 }
 

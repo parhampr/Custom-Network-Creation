@@ -2,11 +2,9 @@ version: '2'
 volumes:
   orderer.example.com:
 ${peerlist}
-  # peer0.org1.example.com:
-  # peer0.org2.example.com:
 
 networks:
-  test:
+  ${networknick}:
     name: ${networkname}
 
 services:
@@ -65,7 +63,6 @@ ${peervolumes}
         - ../organizations:/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations
         - ../scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
     depends_on:
-      - peer0.org1.example.com
-      - peer0.org2.example.com
+${clilist}
     networks:
-      - test
+      - ${networknick}

@@ -265,21 +265,23 @@ cp -u $CURR/utils.sh $NETDIR
 echo $NETDIR
 all
 mkdir -p $NETDIR/../system-genesis-block
-echo "
+gitignore="
 /channel-artifacts/*.tx
 /channel-artifacts/*.block
 /ledgers
 /ledgers-backup
 /channel-artifacts/*.json
 /org3-artifacts/crypto-config/*
-organizations/fabric-ca/ordererOrg/*
-organizations/fabric-ca/org1/*
-organizations/fabric-ca/org2/*
-organizations/ordererOrganizations/*
+organizations/fabric-ca/ordererOrg/*"
+for i in "${ORGANISATIONS[@]}"; do
+  gitignore+="organizations/fabric-ca/$i/* \n"
+done
+gitignore+="organizations/ordererOrganizations/*
 organizations/peerOrganizations/*
 system-genesis-block/*
 *.tar.gz
-log.txt" > $NETDIR/../.gitignore
+log.txt"
+echo "$gitignore" > $NETDIR/../.gitignore
 chmod +x $NETDIR/*.sh
 chmod +x $NETDIR/../*.sh
 cp -r $CURR/addOrg3 $NETDIR/../

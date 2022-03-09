@@ -1,11 +1,25 @@
 #!/bin/bash
 C_YELLOW='\033[1;33m'
+C_RESET='\033[0m'
+C_GREEN='\033[0;32m'
+C_BLUE='\033[0;34m'
+
 shopt -s xpg_echo
 function println() {
   echo -e "$1"
 }
 
 function infoln() {
+  println "${C_YELLOW}${1}${C_RESET}"
+}
+
+# successln echos in green color
+function successln() {
+  println "${C_GREEN}${1}${C_RESET}"
+}
+
+# infoln echos in blue color
+function informationln() {
   println "${C_BLUE}${1}${C_RESET}"
 }
 
@@ -49,10 +63,10 @@ function fabric {
     echo "$total"
 }
 
-NETDIR="ApplicationNetwork"
+NETDIR="$PWD/ApplicationNetwork"
 NETADD="um.edu.my"
 NETWORKNAME="Medi_Chain"
-NETWORKNICK="mdc"
+NETWORKNICK="medic"
 ORGANISATIONS=()
 ORGANISATIONSADD=()
 ADMIN=()
@@ -65,16 +79,24 @@ CAPORT=()
 COUCHPORT=()
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -net|--networkname)
-    NETWORKNAME="$2"
-    NETDIR="$2"
+    -netDIR|--networkDir)
+    # if [ "$DIR" != -d ]; then
+    # infoln "NOT A VALID DIRECOTORY PATH"
+    # exit 0
+    # fi
+    NETDIR="$PWD/$2"
     shift 2
     ;;
-    -netaddress|-networkAddress)
+    -net|--networkname)
+    NETWORKNAME="$2"
+    NETDIR="$PWD/$2"
+    shift 2
+    ;;
+    -netAdd|-networkAddress)
     NETADD="$2"
     shift 2
     ;;
-    -netnick|--networknickname)
+    -netID|--networkID)
     NETWORKNICK="$2"
     shift 2
     ;;
@@ -113,16 +135,18 @@ export NETDIR
 export NETADD
 export NETWORKNAME
 export NETWORKNICK
-infoln "BUILDING CONFIGURATION FOR: "
-echo "  NETWORK NAME:      $NETWORKNAME,
-  NETWORK NICK NAME: $NETWORKNICK,
+infoln "
+BUILDING CONFIGURATION FOR: "
+
+informationln "  NETWORK NAME:      $NETWORKNAME,
+  NETWORK ID:        $NETWORKNICK,
   NETWORK DIRECTORY: $NETDIR,
   NETWORK ADDRESS:   $NETADD
 "
 infoln "ORGANISATION DETAILS "
 for i in "${!ORGANISATIONS[@]}"; do
-echo "  Organisation $(($i + 1)):
-  Organisation Name:     ${ORGANISATIONS[$i]},
+informationln "  Organisation $(($i + 1)):"
+informationln "  Organisation Name:     ${ORGANISATIONS[$i]},
   Organisation PeerP:    ${P0PORT[$i]},
   Organisation CAPort:   ${CAPORT[$i]}
   Organisation ADMIN:    ${ADMIN[$i]},
@@ -130,6 +154,7 @@ echo "  Organisation $(($i + 1)):
   "
 done
 export CURR="$PWD/configtx-temp"
+infoln "Verbose - "
 configtx-temp/generate.sh $(configtxO)
 
 export CURR="$PWD/cryptogen-temp"
@@ -149,3 +174,5 @@ fabric-ca-temps/generate.sh $(fabric)
 
 export CURR="$PWD/generateScripts-temps"
 generateScripts-temps/generate.sh $(testNetO)
+
+successln "\nSuccessfully generated the network config in $NETDIR"

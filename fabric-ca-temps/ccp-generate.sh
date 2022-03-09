@@ -39,8 +39,8 @@ function yaml_ccp {
 function generateCCPs {
     local PEERPEM=organizations/peerOrganizations/$3/tlsca/tlsca.$3-cert.pem
     local CAPEM=organizations/peerOrganizations/$3/ca/ca.$3-cert.pem
-    echo "$(json_ccp $1 $2 $3 $4 $5 $6 $7 $PEERPEM $CAPEM)" > organizations/peerOrganizations/$3/connection-org1.json
-    echo "$(yaml_ccp $1 $2 $3 $4 $5 $6 $7 $PEERPEM $CAPEM)" > organizations/peerOrganizations/$3/connection-org1.yaml
+    echo "$(json_ccp $1 $2 $3 $4 $5 $6 $7 $PEERPEM $CAPEM)" > organizations/peerOrganizations/$3/connection-$1.json
+    echo "$(yaml_ccp $1 $2 $3 $4 $5 $6 $7 $PEERPEM $CAPEM)" > organizations/peerOrganizations/$3/connection-$1.yaml
 }
 
 

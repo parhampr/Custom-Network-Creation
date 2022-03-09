@@ -19,9 +19,11 @@ function orgs {
 
 function all {
     awk -v r="`orgs`" \
-        -v nn="$NETWORKNAME" '{
+        -v nn="$NETWORKNAME" \
+        -v nk="$NETWORKNICK" '{
         gsub(/\${couchdbservices}/,r);
         gsub(/\${networkname}/,nn);
+        gsub(/\${networknick}/, nk);
         }3' $CURR/d-couch-temp.yaml | sed "s/example.com/$NETADD/g"
 }
 

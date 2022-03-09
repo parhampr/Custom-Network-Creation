@@ -153,8 +153,8 @@ informationln "  Organisation Name:     ${ORGANISATIONS[$i]},
   Organisation PASSWORD: ${PASSWORD[$i]:0:2}***
   "
 done
-export CURR="$PWD/configtx-temp"
 infoln "Verbose - "
+export CURR="$PWD/configtx-temp"
 configtx-temp/generate.sh $(configtxO)
 
 export CURR="$PWD/cryptogen-temp"

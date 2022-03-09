@@ -14,8 +14,8 @@ organizations:
     - peer0.${orgAdd}
     certificateAuthorities:
     - ca.${orgAdd}
-    adminUserId: ${ADMINUSERID}
-    adminUserPasswd: ${ADMINUSERPASSWD}
+    adminUserId: ${admin}
+    adminUserPasswd: ${adminpw}
 peers:
   peer0.${orgAdd}:
     url: grpcs://localhost:${P0PORT}

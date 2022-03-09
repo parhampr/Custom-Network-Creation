@@ -25,7 +25,7 @@
         }
     },
     "peers": {
-        "peer0.{orgAdd}": {
+        "peer0.${orgAdd}": {
             "url": "grpcs://localhost:${P0PORT}",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
@@ -37,7 +37,7 @@
         }
     },
     "certificateAuthorities": {
-        "ca.{orgAdd}": {
+        "ca.${orgAdd}": {
             "url": "https://localhost:${CAPORT}",
             "caName": "ca-${sorg}",
             "tlsCACerts": {

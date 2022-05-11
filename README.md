@@ -29,4 +29,4 @@ Start by running "Run-me.sh" and see how organization and its details are descri
 # -netAdd or -networkAddress <COMMON NETWORK ADDRESSS> :: Override default Network Address Provided
 ```
 ### Further Steps
-There is nothing more to do other than running the normal code to configure and start the hyperledger fabric network. You may refer to this documentation for more information [here - Using the fabric test network](https://hyperledger-fabric.readthedocs.io/en/release-2.2/test_network.html).
+There is nothing more to do. Run the normal code to configure and start the hyperledger fabric network. You may refer to this documentation for more information [here - Using the fabric test network](https://hyperledger-fabric.readthedocs.io/en/release-2.2/test_network.html).

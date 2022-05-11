@@ -6,7 +6,7 @@ curl -sSL https://bit.ly/2ysbOFE | bash -s -- <fabric_version> <fabric-ca_versio
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.5 1.5.2
 ### Prerequisite
 Start By importing fabric-samples repository.
-- Make sure to read the [pre-requites](https://hyperledger-fabric.readthedocs.io/en/release-2.2/prereqs.html) before running the below command
+- Make sure to read the [Prerequisite](https://hyperledger-fabric.readthedocs.io/en/release-2.2/prereqs.html) mentioned in the hyperledger website before running the below command
 ```
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.5 1.5.2
 ```

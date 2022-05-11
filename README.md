@@ -4,7 +4,7 @@ Hyperledger Fabric is intended as a foundation for developing applications or so
 
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- <fabric_version> <fabric-ca_version>
 curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.5 1.5.2
-### Pre-requites
+### Prerequisite
 Start By importing fabric-samples repository.
 - Make sure to read the [pre-requites](https://hyperledger-fabric.readthedocs.io/en/release-2.2/prereqs.html) before running the below command
 ```
